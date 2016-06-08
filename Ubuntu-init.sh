@@ -183,31 +183,31 @@ InstallOpenVMTools
 MainMenu()
 {
 # Set IFS to only use new lines as field separator.
-IFS=$'\n'
+#IFS=$'\n'
 
 # Clear Screen
 	clear
 
 # Start menu screen here
-	echo -e "\n----------------------------------------"
-	echo -e "\n          Server init script"
-	echo -e "\n----------------------------------------"
-	echo -e "    Version $currentver - $currentverdate"
-	echo -e "----------------------------------------\n"
+	echo  "----------------------------------------"
+	echo  "          Server init script"
+	echo  "----------------------------------------"
+	echo  "  Version $currentver - $currentverdate"
+	echo  "----------------------------------------"
 
 while [[ "$choice" != "q" ]]
 do
-	echo -e "\nSetup Menu\n"
-	echo -e "1) Update Package lists and upgrade as required"
-	echo -e "2) Install all the default software"
-	echo -e "3) "
-	echo -e "4) "
-	echo -e "5) "
-	echo -e "6) "
-	echo -e "7) Install Netdata for monitoring"
-	echo -e "8) Install OpenSSH Server"
-	echo -e "9) Specific package install and configuration..."
-	echo -e "q) Exit Script\n"
+	echo  "\nSetup Menu\n"
+	echo  "1) Update Package lists and upgrade as required"
+	echo  "2) Install all the default software"
+	echo  "3) "
+	echo  "4) "
+	echo  "5) "
+	echo  "6) "
+	echo  "7) Install Netdata for monitoring"
+	echo  "8) Install OpenSSH Server"
+	echo  "9) Specific package install and configuration..."
+	echo  "q) Exit Script\n"
 
 	read -p "Pick a option: " choice
 
