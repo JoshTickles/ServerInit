@@ -114,7 +114,7 @@ InstallNetdata()
 	git=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
 		if [ $git = "n" ]:
 		then
-			echo -e "\n Git is not installed. Installing now..."
+			echo "\n Git is not installed. Installing now..."
 			sleep 1
 			apt-get install -y git
 		else
@@ -134,7 +134,8 @@ InstallNetdata()
 	sleep 5
 	echo "\nRepo has been cloned... Now to run install script..."
 	sleep 2
-	~/netdata/netdata-installer-sh --dont-wait
+	cd ~/netdata/
+	./netdata-installer-sh --dont-wait
 	echo "\n Netdata is installed and running. I'll check the port is open now..."
 	sleep 3
 fi
