@@ -183,7 +183,7 @@ InstallOpenVMTools
 MainMenu()
 {
 # Set IFS to only use new lines as field separator.
-#IFS=$'\n'
+IFS=$'\n'
 
 # Clear Screen
 	clear
@@ -197,8 +197,9 @@ MainMenu()
 choice=""
 while [ "$choice" != "q" ]
 do
-
+	echo 
 	echo  "Setup Menu"
+	echo
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
 	echo  "3) "
@@ -209,7 +210,8 @@ do
 	echo  "8) Install OpenSSH Server"
 	echo  "9) Specific package install and configuration..."
 	echo  "q) Exit Script"
-
+	echo 
+	
 	read -p "Pick a option: " choice
 
 	case "$choice" in
@@ -217,7 +219,7 @@ do
 		
 		'2') InitialiseServer ;;
 		
-		'3') echo -e "\nempty" ;;
+		'3') echo "\nempty" ;;
 		
 		'4') echo "empty" ;;
 		
@@ -227,10 +229,12 @@ do
 		
 		'7') InstallNetdata
 			FWNetData
+			echo
 			echo "NetData installed. It's on Port 19999" ;;
 			
 		'8')  InstallOpenSSH
-			echo "Openssh-server is installed. It's on the default port."	;;
+			
+			echo "\nOpenssh-server is installed. It's on the default port."	;;
 			
 		'9') PkgMenu	;;
 		
