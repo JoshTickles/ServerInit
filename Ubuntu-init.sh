@@ -41,11 +41,11 @@ AmIroot()
 
 Update()
 {
-	echo ""
-	echo "Updating apt-get repository ..."
+	echo 
+	echo "Updating repositories ..."
 		apt-get -qq -y update
-	echo ""
-	echo "Upgrading installed packages ..."
+	echo 
+	echo "Upgrading installed packages as required..."
 		apt-get -qq -y upgrade
 }
 
@@ -138,10 +138,10 @@ FWNetData()
 		then
 			echo "\nufw not installed. Bypassing...\n"
 		else
-			echo "\nufw already installed. Proceeding."
+			echo "\nufw already installed. Adding the rules...."
 			#Now open port 19999
 			ufw allow 19999
-			echo "\n Port 19999 has been opened, Here's the current Port list..."
+			echo "\nPort 19999 has been opened, Here's the current Port list..."
 			ufw status			
 		fi
 }
@@ -155,6 +155,7 @@ InstallOpenSSH()
 			apt-get install -qq -y openssh-server
 		else
 			echo "\nOpenssh-server is already installed..."
+			echo
 		fi
  }
 
@@ -197,9 +198,9 @@ IFS=$'\n'
 choice=""
 while [ "$choice" != "q" ]
 do
-	echo  "-------------------------------"
-	echo  "		  Setup Menu"
-	echo  "-------------------------------"
+	echo  "----------------------"
+	echo  "	    Setup Menu"
+	echo  "----------------------"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
 	echo  "3) "
