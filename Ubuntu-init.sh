@@ -30,7 +30,7 @@ WhichDistAmI()
 AmIroot()
 {
 	# Check for root, quit if not present with a warning.
-	if [[ "$(id -u)" != "0" ]];
+	if [ "$(id -u)" != "0" ];
 	then
 		echo -e "Script needs to be run as root. Please elevate and run again!"
 		exit 1
@@ -55,7 +55,7 @@ InstallFirewall()
 	# Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "yes" || echo "no")
 
-		if [[ $ufw = "no" ]];
+		if [ $ufw = "no" ];
 		then
 			echo -e "\nufw not installed. Installing now...\n"
 			apt-get install -q -y ufw
@@ -70,7 +70,7 @@ InstallOpenVMTools()
 	# Are the open-vm-tools installed?
 	openvmtools=$(dpkg -l | grep "open-vm-tools" >/dev/null && echo "yes" || echo "no")
 
-		if [[ $openvmtools = "no" ]];
+		if [ $openvmtools = "no" ];
 		then
 			echo -e "\nopen vm tools not installed. Installing now..."
 
@@ -97,7 +97,7 @@ InstallGit()
 {
 	git=$(dpkg -l | grep "git" >/dev/null && echo "y" || echo "n")
 	
-		if [[ $git = "n" ]]:
+		if [ $git = "n" ]:
 		then
 			echo -e "\n Git is not installed. Installing now..."
 			apt-get install -y git
@@ -112,7 +112,7 @@ InstallNetdata()
 {
 #Check to see if Git is installed yet.
 	git=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
-		if [[ $git = "n" ]]:
+		if [ $git = "n" ]:
 		then
 			echo -e "\n Git is not installed. Installing now..."
 			apt-get install -y git
@@ -134,7 +134,7 @@ FWNetData()
 {
 # Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
-		if [[ $ufw = "n" ]];
+		if [ $ufw = "n" ];
 		then
 			echo -e "\nufw not installed. Bypassing...\n"
 		else
@@ -149,7 +149,7 @@ InstallOpenSSH()
 {
 	ssh=$(dpkg -l | grep "openssh-server" >/dev/null && echo "y" || echo "n")
 	
-		if [[ $ssh = "n" ]]:
+		if [ $ssh = "n" ]:
 		then
 			echo -e "\nOpenssh-server is not installed. Installing now..."
 			apt-get install -y openssh-server
@@ -226,10 +226,10 @@ do
 		
 		'7') InstallNetdata
 			FWNetData
-			echo -e "\nNetData installed. It's on Port 19999" ;;
+			echo "NetData installed. It's on Port 19999" ;;
 			
 		'8')  InstallOpenSSH
-			echo -e "\nOpenssh-server is installed. It's on the default port."	;;
+			echo "Openssh-server is installed. It's on the default port."	;;
 			
 		'9') PkgMenu	;;
 		
