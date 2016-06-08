@@ -136,12 +136,12 @@ FWNetData()
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
 		if [ $ufw = "n" ];
 		then
-			echo -e "\nufw not installed. Bypassing...\n"
+			echo "\nufw not installed. Bypassing...\n"
 		else
-			echo -e "\nufw already installed. Proceeding."
+			echo "\nufw already installed. Proceeding."
 			#Now open port 19999
 			ufw allow 19999
-			echo -e "\n Port 19999 has been opened, Here's the current Port list..."
+			echo "\n Port 19999 has been opened, Here's the current Port list..."
 			ufw status			
 		fi
 }
@@ -151,10 +151,10 @@ InstallOpenSSH()
 	
 		if [ $ssh = "n" ]:
 		then
-			echo -e "\nOpenssh-server is not installed. Installing now..."
+			echo "\nOpenssh-server is not installed. Installing now..."
 			apt-get install -qq -y openssh-server
 		else
-			echo -e "\nOpenssh-server is already installed. Proceeding."
+			echo "\nOpenssh-server is already installed. Proceeding."
 		fi
  }
 
