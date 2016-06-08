@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash/sh
 #
 # Requires Ubuntu distribution - This should work fine on versions 16.04 and below...	
 #
@@ -32,7 +32,7 @@ AmIroot()
 	# Check for root, quit if not present with a warning.
 	if [ "$(id -u)" != "0" ];
 	then
-		echo -e "Script needs to be run as root. Please elevate and run again!"
+		echo "\nScript needs to be run as root. Please elevate and run again!"
 		exit 1
 	else
 		echo -e "Script running as root. Starting..."
@@ -59,8 +59,36 @@ InstallFirewall()
 		then
 			echo -e "\nufw not installed. Installing now...\n"
 			apt-get install -q -y ufw
+			ufw enable
 		else
 			echo -e "\nufw already installed. Proceeding."
+		fi
+
+}
+ConfigFW()
+{	# Is UFW installed?
+	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
+
+		if [ $ufw = "n" ];
+		then
+			echo "\nufw not installed. Please install it first."
+			apt-get install -q -y ufw
+			ufw enable
+		else
+			echo "\nufw already installed. Proceeding."
+			
+			ufw --force disable		# Disables the firewall before we make our changes
+			ufw --force reset		# Resets any firewall rules
+			wfw allow ssh			# Port 22
+			ufw allow http			# Port 80 
+			ufw allow smtp			# Port 25
+			ufw allow ntp			# Port 123
+			ufw allow https			# Port 443
+			ufw allow http-alt		# Port 8080
+			ufw --force enable		# Turns on the firewall. May cause ssh disruption in the process.
+			sleep 2
+			ufw status
+		sleep 5
 		fi
 
 }
@@ -205,6 +233,9 @@ IFS=$'\n'
 	echo  "----------------------------------------"
 	echo  "  Version $currentver - $currentverdate"
 	echo  "----------------------------------------"
+	echo
+	uname -v
+	
 choice=""
 while [ "$choice" != "q" ]
 do
@@ -230,9 +261,9 @@ do
 		
 		'2') InitialiseServer ;;
 		
-		'3') echo "\nempty" ;;
+		'3') InstallFirewall ;;
 		
-		'4') echo "empty" ;;
+		'4') ConfigFW ;;
 		
 		'5') echo "empty" ;;
 		
