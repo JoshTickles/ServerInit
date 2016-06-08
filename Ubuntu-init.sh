@@ -123,19 +123,17 @@ InstallNetdata()
 			sleep 1
 # Start with getting dependancies.
 	echo "/nGetting dependencies..."
-	apt-get -y -q install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autogen automake pkg-config
+	apt-get -y -qq install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autogen automake pkg-config
 	sleep 3
 	echo "/nDependencies have been installed... Installing Netdata"
 # Change to home folder as I can't get git to clone to a specific folder... 
-	cd ~
 	sleep 2
 # Now install Netdata...
-	git clone https://github.com/firehol/netdata.git --depth=1
+	git clone https://github.com/firehol/netdata.git --depth=1 /home/$USER/netdata
 	sleep 5
 	echo "\nRepo has been cloned... Now to run install script..."
 	sleep 2
-	cd ~/netdata/
-	./netdata-installer-sh --dont-wait
+	/home/$USER/netdata/netdata-installer-sh --dont-wait
 	echo "\n Netdata is installed and running. I'll check the port is open now..."
 	sleep 3
 fi
