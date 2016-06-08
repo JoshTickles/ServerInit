@@ -46,7 +46,7 @@ Update()
 		apt-get -qq -y update
 	echo ""
 	echo "Upgrading installed packages ..."
-		apt-get -q -y upgrade
+		apt-get -qq -y upgrade
 }
 
 #------------------ PKG Install Functions ------------------------
@@ -197,7 +197,7 @@ MainMenu()
 choice=""
 while [ "$choice" != "q" ]
 do
-clear
+
 	echo  "Setup Menu"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
@@ -268,3 +268,4 @@ AmIroot
 MainMenu
 
 exit 0
+
