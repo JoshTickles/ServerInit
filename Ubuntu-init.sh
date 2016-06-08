@@ -6,6 +6,7 @@
 currentver="0.1"
 currentverdate="8th June 2016"
 
+
 WhichDistAmI()
 {
 	# Check for Ubuntu - This should work fine on versions 16.04 and below...	
@@ -50,7 +51,6 @@ Update()
 }
 
 #------------------ PKG Install Functions ------------------------
-
 InstallFirewall()
 {
 	# Is UFW installed?
@@ -105,6 +105,7 @@ InstallGit()
 		else
 			echo ""
 			echo "Git is already installed. Proceeding."
+		fi
 }
 
 
@@ -152,6 +153,7 @@ InstallOpenSSH()
 			apt-get install -y openssh-server
 		else
 			echo -e "\nOpenssh-server is already installed. Proceeding."
+		fi
 }
 
 
@@ -267,3 +269,4 @@ AmIroot
 MainMenu
 
 exit 0
+
