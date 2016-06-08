@@ -194,7 +194,7 @@ MainMenu()
 	echo  "----------------------------------------"
 	echo  "  Version $currentver - $currentverdate"
 	echo  "----------------------------------------"
-
+choice=""
 while [[ "$choice" != "q" ]]
 do
 	echo  "\nSetup Menu\n"
@@ -243,7 +243,7 @@ done
 PkgMenu()
 {
 # Set IFS to only use new lines as field separator.
-	IFS=$'\n'
+	#IFS=$'\n'
 # Clear the screen
 	clear
 
