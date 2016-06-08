@@ -195,7 +195,7 @@ IFS=$'\n'
 	echo -e "    Version $currentver - $currentverdate"
 	echo -e "----------------------------------------\n"
 
-while [[ $choice != "q" ]]
+while [[ "$choice" != "q" ]]
 do
 	echo -e "\nSetup Menu\n"
 	echo -e "1) Update Package lists and upgrade as required"
