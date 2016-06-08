@@ -115,23 +115,28 @@ InstallNetdata()
 		if [ $git = "n" ]:
 		then
 			echo -e "\n Git is not installed. Installing now..."
+			sleep 1
 			apt-get install -y git
 		else
 			echo ""
 			echo "Git is already installed. Proceeding."
-#Start with getting dependancies.
+			sleep 1
+# Start with getting dependancies.
 	echo "/nGetting dependencies..."
 	apt-get -y -q install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autogen automake pkg-config
 	sleep 3
 	echo "/nDependencies have been installed... Installing Netdata"
+# Change to home folder as I can't get git to clone to a specific folder... 
+	cd ~
 	sleep 2
-#Now install Netdata...
+# Now install Netdata...
 	git clone https://github.com/firehol/netdata.git --depth=1
 	sleep 5
 	echo "\nRepo has been cloned... Now to run install script..."
 	sleep 2
 	~/netdata/netdata-installer-sh --dont-wait
 	echo "\n Netdata is installed and running. I'll check the port is open now..."
+	sleep 3
 fi
 }
 FWNetData()
@@ -143,10 +148,12 @@ FWNetData()
 			echo "\nufw not installed. Bypassing...\n"
 		else
 			echo "\nufw already installed. Adding the rules...."
+			sleep 1
 			#Now open port 19999
 			ufw allow 19999
-			echo "\nPort 19999 has been opened, Here's the current Port list..."
-			ufw status			
+			echo "\nPort 19999 is open, Here's the current Port list..."
+			ufw status
+			sleep 3
 		fi
 }
 InstallOpenSSH()
