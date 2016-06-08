@@ -195,9 +195,9 @@ MainMenu()
 	echo  "  Version $currentver - $currentverdate"
 	echo  "----------------------------------------"
 choice=""
-while [[ "$choice" != "q" ]]
+while [ "$choice" != "q" ]
 do
-	echo  "\nSetup Menu\n"
+	echo  "Setup Menu"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
 	echo  "3) "
@@ -207,7 +207,7 @@ do
 	echo  "7) Install Netdata for monitoring"
 	echo  "8) Install OpenSSH Server"
 	echo  "9) Specific package install and configuration..."
-	echo  "q) Exit Script\n"
+	echo  "q) Exit Script"
 
 	read -p "Pick a option: " choice
 
@@ -243,7 +243,7 @@ done
 PkgMenu()
 {
 # Set IFS to only use new lines as field separator.
-	#IFS=$'\n'
+	IFS=$'\n'
 # Clear the screen
 	clear
 
