@@ -232,11 +232,11 @@ do
 			echo
 			echo "NetData installed. It's on Port 19999" ;;
 			
-		'8') InstallOpenSSH
+		'8') InstallOpenSSH ;;
 			
 		'9') PkgMenu	;;
 		
-		q) echo "Exiting the script. "
+		q) echo "\nExiting the script. "
 			;;
 		*) echo "\nBad input. Please try again." ;;
 	esac
