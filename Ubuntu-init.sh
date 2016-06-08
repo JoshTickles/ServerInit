@@ -209,38 +209,34 @@ do
 	echo -e "9) Specific package install and configuration..."
 	echo -e "q) Exit Script\n"
 
-	read -p "Pick a option (1-9 / q) : " choice
+	read -p "Pick a option: " choice
 
 	case "$choice" in
-		1)
-			Update ;;
-		2)
-			InitialiseServer ;;
-		3)
-			 ;;
-		4)
-			DeleteInstance ;;
-		5)
-			DumpDatabase ;;
-		6)
-			UploadDatabase ;;
-		7)
-			InstallNetdata
+		'1') Update ;;
+		
+		'2') InitialiseServer ;;
+		
+		'3') echo -e "\nempty" ;;
+		
+		'4') echo "empty" ;;
+		
+		'5') echo "empty" ;;
+		
+		'6') echo "empty" ;;
+		
+		'7') InstallNetdata
 			FWNetData
 			echo -e "\nNetData installed. It's on Port 19999" ;;
-		8)
-			InstallOpenSSH
+			
+		'8')  InstallOpenSSH
 			echo -e "\nOpenssh-server is installed. It's on the default port."	;;
-		9)
-			PkgMenu	;;
-		q)
-			echo ""
-			echo "Exiting the script. "
+			
+		'9') PkgMenu	;;
+		
+		q) echo "Exiting the script. "
 			;;
-		*)
-			echo -e "\nIncorrect input. Please try again." ;;
+		*) echo -e "\nIncorrect input. Please try again." ;;
 	esac
-
 done
 }
 
