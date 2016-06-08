@@ -125,9 +125,9 @@ InstallNetdata()
 	echo -e "/nDependencies have been installed... Installing Netdata"
 #Now install Netdata...
 	git clone https://github.com/firehol/netdata.git --depth=1
-	echo -e "\nRepo has been cloned... Now to run install script..."
+	echo "\nRepo has been cloned... Now to run install script..."
 	~/netdata/netdata-installer-sh --dont-wait
-	echo -e "\n Netdata is installed and running. I'll check the port is open now..."
+	echo "\n Netdata is installed and running. I'll check the port is open now..."
 fi
 }
 FWNetData()
@@ -154,7 +154,7 @@ InstallOpenSSH()
 			echo "\nOpenssh-server is not installed. Installing now..."
 			apt-get install -qq -y openssh-server
 		else
-			echo "\nOpenssh-server is already installed. Proceeding."
+			echo "\nOpenssh-server is already installed..."
 		fi
  }
 
@@ -197,9 +197,9 @@ IFS=$'\n'
 choice=""
 while [ "$choice" != "q" ]
 do
-	echo 
-	echo  "Setup Menu"
-	echo
+	echo  "-------------------------------"
+	echo  "		  Setup Menu"
+	echo  "-------------------------------"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
 	echo  "3) "
@@ -232,15 +232,13 @@ do
 			echo
 			echo "NetData installed. It's on Port 19999" ;;
 			
-		'8')  InstallOpenSSH
-			
-			echo "\nOpenssh-server is installed. It's on the default port."	;;
+		'8') InstallOpenSSH
 			
 		'9') PkgMenu	;;
 		
 		q) echo "Exiting the script. "
 			;;
-		*) echo -e "\nIncorrect input. Please try again." ;;
+		*) echo "\nBad input. Please try again." ;;
 	esac
 done
 }
@@ -265,7 +263,7 @@ PkgMenu()
 
 #-------------------------------------------- Main Code Begins here!
 
-# Check for distribution, user privilege level and required files
+# Check for distribution, root and start the menu
 
 WhichDistAmI
 AmIroot
