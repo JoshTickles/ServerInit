@@ -152,7 +152,7 @@ InstallOpenSSH()
 		if [ $ssh = "n" ]:
 		then
 			echo -e "\nOpenssh-server is not installed. Installing now..."
-			apt-get install -y openssh-server
+			apt-get install -qq -y openssh-server
 		else
 			echo -e "\nOpenssh-server is already installed. Proceeding."
 		fi
@@ -197,6 +197,7 @@ MainMenu()
 choice=""
 while [ "$choice" != "q" ]
 do
+clear
 	echo  "Setup Menu"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
@@ -267,4 +268,3 @@ AmIroot
 MainMenu
 
 exit 0
-
