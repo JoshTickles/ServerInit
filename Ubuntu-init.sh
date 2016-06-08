@@ -120,12 +120,16 @@ InstallNetdata()
 			echo ""
 			echo "Git is already installed. Proceeding."
 #Start with getting dependancies.
-	echo -e "/nGetting dependencies..."
+	echo "/nGetting dependencies..."
 	apt-get -y -q install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autogen automake pkg-config
-	echo -e "/nDependencies have been installed... Installing Netdata"
+	sleep 3
+	echo "/nDependencies have been installed... Installing Netdata"
+	sleep 2
 #Now install Netdata...
 	git clone https://github.com/firehol/netdata.git --depth=1
+	sleep 5
 	echo "\nRepo has been cloned... Now to run install script..."
+	sleep 2
 	~/netdata/netdata-installer-sh --dont-wait
 	echo "\n Netdata is installed and running. I'll check the port is open now..."
 fi
@@ -199,7 +203,7 @@ choice=""
 while [ "$choice" != "q" ]
 do
 	echo  "----------------------"
-	echo  "	    Setup Menu"
+	echo  "Setup Menu"
 	echo  "----------------------"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
