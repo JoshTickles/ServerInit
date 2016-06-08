@@ -6,7 +6,6 @@
 currentver="0.1"
 currentverdate="8th June 2016"
 
-
 WhichDistAmI()
 {
 	# Check for Ubuntu - This should work fine on versions 16.04 and below...	
@@ -129,6 +128,10 @@ InstallNetdata()
 	echo -e "\nRepo has been cloned... Now to run install script..."
 	~/netdata/netdata-installer-sh --dont-wait
 	echo -e "\n Netdata is installed and running. I'll check the port is open now..."
+fi
+}
+FWNetData()
+{
 # Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
 		if [[ $ufw = "n" ]];
@@ -142,7 +145,6 @@ InstallNetdata()
 			ufw status			
 		fi
 }
-
 InstallOpenSSH()
 {
 	ssh=$(dpkg -l | grep "openssh-server" >/dev/null && echo "y" || echo "n")
@@ -154,7 +156,7 @@ InstallOpenSSH()
 		else
 			echo -e "\nOpenssh-server is already installed. Proceeding."
 		fi
-}
+ }
 
 
 
@@ -224,6 +226,7 @@ do
 			UploadDatabase ;;
 		7)
 			InstallNetdata
+			FWNetData
 			echo -e "\nNetData installed. It's on Port 19999" ;;
 		8)
 			InstallOpenSSH
@@ -254,7 +257,6 @@ PkgMenu()
 	echo -e "\n----------------------------------------"
 	echo -e "      Package Installation and Config"
 	echo -e "----------------------------------------\n"
-	
 
 
 }
