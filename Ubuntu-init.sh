@@ -35,7 +35,7 @@ AmIroot()
 		echo "\nScript needs to be run as root. Please elevate and run again!"
 		exit 1
 	else
-		echo -e "Script running as root. Starting..."
+		echo "\nScript running as root. Starting..."
 	fi
 }
 
@@ -63,22 +63,18 @@ InstallFirewall()
 		else
 			echo -e "\nufw already installed. Proceeding."
 		fi
-
 }
+
 ConfigFW()
 {	# Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
-
 		if [ $ufw = "n" ];
 		then
 			echo "\nufw not installed. Please install it first."
-			apt-get install -q -y ufw
-			ufw enable
 		else
 			echo "\nufw already installed. Proceeding."
-			
 			ufw --force disable		# Disables the firewall before we make our changes
-			ufw --force reset		# Resets any firewall rules
+			#ufw --force reset		# Resets any firewall rules
 			wfw allow ssh			# Port 22
 			ufw allow http			# Port 80 
 			ufw allow smtp			# Port 25
@@ -100,24 +96,24 @@ InstallOpenVMTools()
 
 		if [ $openvmtools = "no" ];
 		then
-			echo -e "\nopen vm tools not installed. Installing now..."
+			echo "\nopen vm tools not installed. Installing now..."
 
-			echo -e "\nGetting VMware packaging keys from server."
+			echo "\nGetting VMware packaging keys from server."
 			wget http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-DSA-KEY.pub
 			wget http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub
 
-			echo -e "\nInstalling VMware packaging keys into apt."
+			echo "\nInstalling VMware packaging keys into apt."
 			apt-key add ./VMWARE-PACKAGING-GPG-DSA-KEY.pub
 			apt-key add ./VMWARE-PACKAGING-GPG-RSA-KEY.pub
 
-			echo -e "\nCleaning up key files."
+			echo "\nCleaning up key files."
 			rm ./VMWARE-PACKAGING-GPG-DSA-KEY.pub
 			rm ./VMWARE-PACKAGING-GPG-RSA-KEY.pub
 
-			echo -e "\nInstalling open vm tools."
+			echo "\nInstalling open vm tools."
 			apt-get install -q -y open-vm-tools
 		else
-			echo -e "\nopen vm tools already installed. Proceeding."
+			echo "\nopen vm tools already installed. Proceeding."
 		fi		
 }
 
@@ -127,7 +123,7 @@ InstallGit()
 	
 		if [ $git = "n" ]:
 		then
-			echo -e "\n Git is not installed. Installing now..."
+			echo "\n Git is not installed. Installing now..."
 			apt-get install -y git
 		else
 			echo ""
@@ -150,10 +146,10 @@ InstallNetdata()
 			echo "Git is already installed. Proceeding."
 			sleep 1
 # Start with getting dependancies.
-	echo "/nGetting dependencies..."
+	echo "\nGetting dependencies..."
 	apt-get -y -qq install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autogen automake pkg-config
 	sleep 3
-	echo "/nDependencies have been installed... Installing Netdata"
+	echo "\nDependencies have been installed... Installing Netdata"
 # Change to home folder as I can't get git to clone to a specific folder... 
 	sleep 2
 # Now install Netdata...
@@ -162,7 +158,7 @@ InstallNetdata()
 	echo "\nRepo has been cloned... Now to run install script..."
 	sleep 2
 	/home/$USER/netdata/netdata-installer-sh --dont-wait
-	echo "\n Netdata is installed and running. I'll check the port is open now..."
+	echo "\n Netdata is cloned and running. I'll check the port is open now..."
 	sleep 3
 fi
 }
@@ -172,7 +168,7 @@ FWNetData()
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
 		if [ $ufw = "n" ];
 		then
-			echo "\nufw not installed. Bypassing...\n"
+			echo "\nufw not installed. Bypassing..."
 		else
 			echo "\nufw already installed. Adding the rules...."
 			sleep 1
@@ -248,7 +244,7 @@ do
 	echo  "4) "
 	echo  "5) "
 	echo  "6) "
-	echo  "7) Install Netdata for monitoring"
+	echo  "7) Install Netdata"
 	echo  "8) Install OpenSSH Server"
 	echo  "9) Specific package install and configuration..."
 	echo  "q) Exit Script"
