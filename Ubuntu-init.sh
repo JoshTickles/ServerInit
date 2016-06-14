@@ -61,7 +61,7 @@ InstallFirewall()
 			apt-get install -q -y ufw
 			ufw enable
 		else
-			echo -e "\nufw already installed. Proceeding."
+			echo -e "\nufw already installed..."
 		fi
 }
 
@@ -113,7 +113,7 @@ InstallOpenVMTools()
 			echo "\nInstalling open vm tools."
 			apt-get install -q -y open-vm-tools
 		else
-			echo "\nopen vm tools already installed. Proceeding."
+			echo "\nopen vm tools already installed..."
 		fi		
 }
 
@@ -127,7 +127,7 @@ InstallGit()
 			apt-get install -y git
 		else
 			echo ""
-			echo "Git is already installed. Proceeding."
+			echo "Git is already installed..."
 		fi
 }
 
@@ -143,7 +143,7 @@ InstallNetdata()
 			apt-get install -y git
 		else
 			echo ""
-			echo "Git is already installed. Proceeding."
+			echo "Git is already installed..."
 			sleep 1
 # Start with getting dependancies.
 	echo "\nGetting dependencies..."
