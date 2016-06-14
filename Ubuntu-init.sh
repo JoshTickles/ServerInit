@@ -9,7 +9,7 @@ currentverdate="8th June 2016"
 WhichDistAmI()
 {
 	# Check for Ubuntu - This should work fine on versions 16.04 and below...	
-	if [ -f "/usr/bin/lsb_release" ];
+	if [ -f "/usr/bin/lsb_release" ]:
 	then
 		ubuntuVersion=`lsb_release -s -d`
 
@@ -30,7 +30,7 @@ WhichDistAmI()
 AmIroot()
 {
 	# Check for root, quit if not present with a warning.
-	if [ "$(id -u)" != "0" ];
+	if [ "$(id -u)" != "0" ]:
 	then
 		echo "\nScript needs to be run as root. Please elevate and run again!"
 		exit 1
@@ -55,7 +55,7 @@ InstallFirewall()
 	# Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "yes" || echo "no")
 
-		if [ $ufw = "no" ];
+		if [ $ufw = "no" ]:
 		then
 			echo -e "\nufw not installed. Installing now...\n"
 			apt-get install -q -y ufw
@@ -68,7 +68,7 @@ InstallFirewall()
 ConfigFW()
 {	# Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
-		if [ $ufw = "n" ];
+		if [ $ufw = "n" ]:
 		then
 			echo "\nufw not installed. Please install it first."
 		else
@@ -92,9 +92,9 @@ ConfigFW()
 InstallOpenVMTools()
 {
 	# Are the open-vm-tools installed?
-	openvmtools=$(dpkg -l | grep "open-vm-tools" >/dev/null && echo "yes" || echo "no")
+	openvmtools=$(dpkg -l | grep "open-vm-tools" >/dev/null && echo "y" || echo "n")
 
-		if [ $openvmtools = "no" ];
+		if [ $openvmtools = "n" ]:
 		then
 			echo "\nopen vm tools not installed. Installing now..."
 
@@ -166,7 +166,7 @@ FWNetData()
 {
 # Is UFW installed?
 	ufw=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
-		if [ $ufw = "n" ];
+		if [ $ufw = "n" ]:
 		then
 			echo "\nufw not installed. Bypassing..."
 		else
