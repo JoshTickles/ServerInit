@@ -57,11 +57,11 @@ InstallFirewall()
 
 		if [ $ufw = "no" ];
 		then
-			echo -e "\nufw not installed. Installing now...\n"
+			echo "\nufw not installed. Installing now...\n"
 			apt-get install -q -y ufw
 			ufw enable
 		else
-			echo -e "\nufw already installed..."
+			echo "\nufw already installed..."
 		fi
 }
 
@@ -208,6 +208,7 @@ InstallOpenVMTools
 Networking ()
 {
 	echo "\nPlease enter your Networking information..."
+	echo "\nCtrl + X when finished to save your changes."
 	sleep 3
 	sudoedit /etc/network/interfaces
 
@@ -291,14 +292,6 @@ PkgMenu()
 	IFS=$'\n'
 # Clear the screen
 	clear
-
-# Start menu screen here
-	echo -e "\n----------------------------------------"
-	echo -e "\n       Ubuntu Server init script"
-	echo -e "\n----------------------------------------"
-	echo -e "      Package Installation and Config"
-	echo -e "----------------------------------------\n"
-
 choice=""
 while [ "$choice" != "q" ]
 do
@@ -335,8 +328,7 @@ do
 		
 		'7') InstallNetdata
 			FWNetData
-			echo
-			echo "NetData installed. It's on Port 19999" ;;
+			echo "\nNetData installed. It's on Port 19999" ;;
 			
 		'8') InstallOpenSSH ;;
 			
