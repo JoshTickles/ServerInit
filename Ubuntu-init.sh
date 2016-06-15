@@ -3,8 +3,8 @@
 # Requires Ubuntu distribution - This should work fine on versions 16.04 and below...	
 #
 #
-currentver="0.1"
-currentverdate="8th June 2016"
+currentver="0.4"
+currentverdate="15th June 2016"
 
 WhichDistAmI()
 {
@@ -195,7 +195,7 @@ InstallOpenSSH()
 
 
 
-
+-----------------------------# Other functions
 InitialiseServer ()
 #List all Install Functions in here...
 {
@@ -205,12 +205,15 @@ InstallOpenSSH
 InstallOpenVMTools
 }
 
+Networking ()
+{
+	echo "\nPlease enter your Networking information..."
+	sleep 3
+	sudoedit /etc/network/interfaces
 
 
 
-
-
-
+}
 
 
 #------------------------------------- Menu's
@@ -241,14 +244,14 @@ do
 	echo  "----------------------"
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
-	echo  "3) "
+	echo  "3) Setup network configuration"
 	echo  "4) "
 	echo  "5) "
 	echo  "6) "
 	echo  "7) Install Netdata"
 	echo  "8) Install OpenSSH Server"
 	echo  "9) Specific package install and configuration..."
-	echo  "q) Exit Script"
+	echo  "q) Exit "
 	echo 
 	
 	read -p "Pick a option: " choice
@@ -258,7 +261,7 @@ do
 		
 		'2') InitialiseServer ;;
 		
-		'3') InstallFirewall ;;
+		'3') Networking ;;
 		
 		'4') ConfigFW ;;
 		
@@ -296,7 +299,55 @@ PkgMenu()
 	echo -e "      Package Installation and Config"
 	echo -e "----------------------------------------\n"
 
+choice=""
+while [ "$choice" != "q" ]
+do
+	echo
+	echo  "----------------------"
+	echo  " Package Menu"
+	echo  "----------------------"
+	echo  "1) Update Package lists and upgrade as required"
+	echo  "2) Install Open VM Tools"
+	echo  "3) Install UFW Firewall"
+	echo  "4) Configure UFW Firewall"
+	echo  "5) "
+	echo  "6) "
+	echo  "7) Install Netdata"
+	echo  "8) Install OpenSSH Server"
+	echo  "9) Return to Main Menu"
+	echo  "q) Exit"
+	echo 
+	
+	read -p "Pick a option: " choice
 
+	case "$choice" in
+		'1') Update ;;
+		
+		'2') InstallOpenVMTools ;;
+		
+		'3') InstallFirewall ;;
+		
+		'4') ConfigFW ;;
+		
+		'5') echo "empty" ;;
+		
+		'6') echo "empty" ;;
+		
+		'7') InstallNetdata
+			FWNetData
+			echo
+			echo "NetData installed. It's on Port 19999" ;;
+			
+		'8') InstallOpenSSH ;;
+			
+		'9') MainMenu	;;
+		
+		q) echo "\nExiting the script. "
+			;;
+		*) echo "\nBad input. Please try again." ;;
+	esac
+done
+}
 }
 
 
