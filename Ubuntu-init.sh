@@ -195,7 +195,7 @@ InstallOpenSSH()
 
 
 
------------------------------# Other functions
+#----------------------------- Other functions
 InitialiseServer ()
 #List all Install Functions in here...
 {
@@ -348,7 +348,7 @@ do
 	esac
 done
 }
-}
+
 
 
 #-------------------------------------------- Main Code Begins here!
