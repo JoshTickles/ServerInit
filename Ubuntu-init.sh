@@ -162,6 +162,7 @@ InstallNetdata()
 	sleep 3
 fi
 }
+
 FWNetData()
 {
 # Is UFW installed?
@@ -179,6 +180,7 @@ FWNetData()
 			sleep 3
 		fi
 }
+
 InstallOpenSSH()
 {
 	ssh=$(dpkg -l | grep "openssh-server" >/dev/null && echo "y" || echo "n")
@@ -191,6 +193,26 @@ InstallOpenSSH()
 			echo "\nOpenssh-server is already installed..."
 			
 		fi
+ }
+ 
+ SetAlias()
+ {
+ 	#Grab username 
+ 	echo "Please enter your account username for alias binding: "
+		read Username
+	echo "You entered: $Username"
+	sleep 3
+	echo "Applying aliases to $Username's profile..."
+ 	sleep 3
+ 	echo "" >> /home/$Username/.bashrc #Create New line in .bashrc
+ 	echo "## Aliases set by 'ServerInit' script" >> /home/$UserName/.bashrc
+ 	echo "alias dist-upgrade='sudo apt-get dist-upgrade'" >> /home/$UserName/.bashrc
+ 	echo "alias upgrade='sudo apt-get upgrade'" >> /home/$UserName/.bashrc
+ 	echo "alias update='sudo apt-get update'" >> /home/$UserName/.bashrc
+ 	echo "alias c='clear'" >> /home/$UserName/.bashrc
+ 	# Add any more Alias' you wish...
+ 	sleep 3
+ 	echo "Aliases have been added... "
  }
 
 
@@ -246,7 +268,7 @@ do
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
 	echo  "3) Setup network configuration"
-	echo  "4) "
+	echo  "4) Setup common system Aliases"
 	echo  "5) "
 	echo  "6) "
 	echo  "7) Install Netdata"
