@@ -211,10 +211,10 @@ InstallOpenSSH()
  	echo "alias dist-upgrade='sudo apt-get dist-upgrade'" >> $save
  	echo "alias upgrade='sudo apt-get upgrade'" >> $save
  	echo "alias update='sudo apt-get update'" >> $save
- 	echo "alias c='clear'" >> $
+ 	echo "alias c='clear'" >> $save
  	# Add any more Alias' you wish...
  	sleep 3
- 	echo "Aliases have been added... "
+ 	echo "Aliases have been added... You must exit your session for these to take effect."
  }
 
 
