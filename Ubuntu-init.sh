@@ -286,7 +286,7 @@ do
 		
 		'3') Networking ;;
 		
-		'4') ConfigFW ;;
+		'4') SetAlias ;;
 		
 		'5') echo "empty" ;;
 		
