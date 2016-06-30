@@ -2,5 +2,5 @@
 
 # Usage
 
-sudo sh ./UbuntuInit.sh
+sudo sh ./Ubuntu-Init.sh
 
