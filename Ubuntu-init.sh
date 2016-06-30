@@ -197,6 +197,7 @@ InstallOpenSSH()
  
  SetAlias()
  {
+ 	
  	#Grab username 
  	echo "Please enter your account username for alias binding: "
 		read Username
@@ -204,12 +205,13 @@ InstallOpenSSH()
 	sleep 3
 	echo "Applying aliases to $Username's profile..."
  	sleep 3
- 	echo "" >> /home/$Username/.bashrc #Create New line in .bashrc
- 	echo "## Aliases set by 'ServerInit' script" >> /home/$UserName/.bashrc
- 	echo "alias dist-upgrade='sudo apt-get dist-upgrade'" >> /home/$UserName/.bashrc
- 	echo "alias upgrade='sudo apt-get upgrade'" >> /home/$UserName/.bashrc
- 	echo "alias update='sudo apt-get update'" >> /home/$UserName/.bashrc
- 	echo "alias c='clear'" >> /home/$UserName/.bashrc
+ 		save="/home/$Username/.bash_aliases"
+ 	echo "" >> $save #Create New line in .bash_aliases
+ 	echo "## Aliases set by 'ServerInit' script" >> $save
+ 	echo "alias dist-upgrade='sudo apt-get dist-upgrade'" >> $save
+ 	echo "alias upgrade='sudo apt-get upgrade'" >> $save
+ 	echo "alias update='sudo apt-get update'" >> $save
+ 	echo "alias c='clear'" >> $
  	# Add any more Alias' you wish...
  	sleep 3
  	echo "Aliases have been added... "
