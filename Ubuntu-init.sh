@@ -3,8 +3,8 @@
 # Requires Ubuntu distribution - This should work fine on versions 16.04 and below...	
 #
 #
-currentver="0.4"
-currentverdate="15th June 2016"
+currentver="0.62"
+currentverdate="1sh July 2016"
 
 WhichDistAmI()
 {
