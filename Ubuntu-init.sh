@@ -244,8 +244,8 @@ Networking ()
 NetworkingRestart ()
 { 
 	echo  "\nWarning - this will restart your networking interface... Are you sure you wish to do this? (Y or N)"
-	read yorn	
-		if [ $yorn = "Y"];
+	read ans	
+		if [ $ans = "Y"];
 		then
 			ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
 			echo "\nInterface restarted..."
