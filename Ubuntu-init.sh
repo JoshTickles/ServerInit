@@ -121,7 +121,7 @@ InstallGit()
 {
 	git=$(dpkg -l | grep "git" >/dev/null && echo "y" || echo "n")
 	
-		if [ $git = "n" ]:
+		if [ $git = "n" ];
 		then
 			echo "\n Git is not installed. Installing now..."
 			apt-get install -y git
@@ -136,7 +136,7 @@ InstallNetdata()
 {
 #Check to see if Git is installed yet.
 	git=$(dpkg -l | grep "ufw" >/dev/null && echo "y" || echo "n")
-		if [ $git = "n" ]:
+		if [ $git = "n" ];
 		then
 			echo "\n Git is not installed. Installing now..."
 			sleep 1
@@ -185,7 +185,7 @@ InstallOpenSSH()
 {
 	ssh=$(dpkg -l | grep "openssh-server" >/dev/null && echo "y" || echo "n")
 	
-		if [ $ssh = "n" ]:
+		if [ $ssh = "n" ];
 		then
 			echo "\nOpenssh-server is not installed. Installing now..."
 			apt-get install -qq -y openssh-server
@@ -197,7 +197,6 @@ InstallOpenSSH()
  
  SetAlias()
  {
- 	
  	#Grab username 
  	echo "Please enter your account username for alias binding: "
 		read Username
@@ -234,13 +233,20 @@ Networking ()
 	echo "\nPlease enter your Networking information..."
 	echo "\nCtrl + X when finished to save your changes."
 	sleep 3
+	
 	sudoedit /etc/network/interfaces
-
-
-
 }
-
-
+NetworkingRestart ()
+{ 
+	echo  "\nWarning - this will restart your networking interface... Are you sure you wish to do this? (Y or N)"
+	read yorn	
+		if [ $yorn = "Y"];
+		then
+			ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
+		else	
+	echo "\nReturning to main menu..."
+	fi
+}
 #------------------------------------- Menu's
 
 MainMenu()
