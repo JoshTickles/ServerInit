@@ -230,11 +230,16 @@ InstallOpenVMTools
 
 Networking ()
 {
-	echo "\nPlease enter your Networking information..."
+	echo "\nPlease enter your Networking information...I've pre-populated some fields for you."
 	echo "\nCtrl + X when finished to save your changes."
 	sleep 3
-	
+	echo "\naddress " >> /etc/network/interfaces
+	echo "\nnetmask " >> /etc/network/interfaces
+	echo "\ngateway " >> /etc/network/interfaces
+	echo "\ndns-nameservers " >> /etc/network/interfaces
+	sleep 1
 	sudoedit /etc/network/interfaces
+	echo "\nNow maybe a good time to restart your network interface..."
 }
 NetworkingRestart ()
 { 
@@ -243,6 +248,7 @@ NetworkingRestart ()
 		if [ $yorn = "Y"];
 		then
 			ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
+			echo "\nInterface restarted..."
 		else	
 	echo "\nReturning to main menu..."
 	fi
