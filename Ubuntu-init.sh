@@ -282,8 +282,8 @@ do
 	echo  "1) Update Package lists and upgrade as required"
 	echo  "2) Install all the default software"
 	echo  "3) Setup network configuration"
-	echo  "4) Setup common system Aliases"
-	echo  "5) "
+	echo  "4) Restart network interfaces"
+	echo  "5) Setup common system Aliases""
 	echo  "6) "
 	echo  "7) Install Netdata"
 	echo  "8) Install OpenSSH Server"
@@ -300,9 +300,9 @@ do
 		
 		'3') Networking ;;
 		
-		'4') SetAlias ;;
+		'4') NetworkingRestart ;;
 		
-		'5') echo "empty" ;;
+		'5') SetAliases ;;
 		
 		'6') echo "empty" ;;
 		
