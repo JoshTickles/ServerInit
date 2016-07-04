@@ -248,7 +248,7 @@ if [ "$ans" = "y" ];
 	then
   		ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
 	else
-  echo "\Returning to main menu"
+  echo "\nReturning to main menu..."
 fi
 }
 
