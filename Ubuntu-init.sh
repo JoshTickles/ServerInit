@@ -219,7 +219,7 @@ InstallOpenSSH()
 
 
 #----------------------------- Other functions
-InitialiseServer ()
+InitialiseServer()
 #List all Install Functions in here...
 {
 Update
@@ -228,7 +228,7 @@ InstallOpenSSH
 InstallOpenVMTools
 }
 
-Networking ()
+Networking()
 {
 	echo "\nPlease enter your Networking information...I've pre-populated some fields for you."
 	echo "\nCtrl + X when finished to save your changes."
@@ -241,16 +241,16 @@ Networking ()
 	sudoedit /etc/network/interfaces
 	echo "\nNow maybe a good time to restart your network interface..."
 }
-NetworkingRestart ()
+NetworkingRestart()
 { 
-echo "Warning - this will restart your networking interface... Are you sure you wish to do this?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) ifdown --exclude=lo -a && sudo ifup --exclude=lo -a break;;
-        No ) exit;;
-    esac
-done
-}
+read -p "Warning - this will restart your networking interface... Are you sure you wish to do this? (y/n)" ans
+if [ "$ans" = "y" ]; 
+	then
+  		ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
+	else
+  echo "\Returning to main menu"
+fi
+
 #------------------------------------- Menu's
 
 MainMenu()
