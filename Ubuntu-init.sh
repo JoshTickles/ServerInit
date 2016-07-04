@@ -250,6 +250,7 @@ if [ "$ans" = "y" ];
 	else
   echo "\Returning to main menu"
 fi
+}
 
 #------------------------------------- Menu's
 
