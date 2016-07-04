@@ -92,9 +92,9 @@ ConfigFW()
 InstallOpenVMTools()
 {
 	# Are the open-vm-tools installed?
-	openvmtools=$(dpkg -l | grep "open-vm-tools" >/dev/null && echo "yes" || echo "no")
+	openvmtools=$(dpkg -l | grep "open-vm-tools" >/dev/null && echo "y" || echo "n")
 
-		if [ $openvmtools = "no" ];
+		if [ $openvmtools = "n" ];
 		then
 			echo "\nopen vm tools not installed. Installing now..."
 
@@ -234,24 +234,22 @@ Networking ()
 	echo "\nCtrl + X when finished to save your changes."
 	sleep 3
 	echo "\naddress " >> /etc/network/interfaces
-	echo "\nnetmask " >> /etc/network/interfaces
-	echo "\ngateway " >> /etc/network/interfaces
-	echo "\ndns-nameservers " >> /etc/network/interfaces
+	echo "netmask " >> /etc/network/interfaces
+	echo "gateway " >> /etc/network/interfaces
+	echo "dns-nameservers " >> /etc/network/interfaces
 	sleep 1
 	sudoedit /etc/network/interfaces
 	echo "\nNow maybe a good time to restart your network interface..."
 }
 NetworkingRestart ()
 { 
-	echo  "\nWarning - this will restart your networking interface... Are you sure you wish to do this? (Y or N)"
-	read ans	
-		if [ $ans = "Y"];
-		then
-			ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
-			echo "\nInterface restarted..."
-		else	
-	echo "\nReturning to main menu..."
-	fi
+echo "Warning - this will restart your networking interface... Are you sure you wish to do this?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) ifdown --exclude=lo -a && sudo ifup --exclude=lo -a break;;
+        No ) exit;;
+    esac
+done
 }
 #------------------------------------- Menu's
 
