@@ -301,7 +301,7 @@ do
 		
 		'4') NetworkingRestart ;;
 		
-		'5') SetAliases ;;
+		'5') SetAlias ;;
 		
 		'6') echo "empty" ;;
 		
