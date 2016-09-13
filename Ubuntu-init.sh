@@ -252,7 +252,6 @@ hosts()
 		echo "10.0.1.20	movies movies.home.lan" >> /etc/hosts
 		echo "10.0.1.21	dll dll.home.lan" >> /etc/hosts
 		echo "10.0.1.21	nzbget nzbget.home.lan" >> /etc/hosts
-		
 		sleep 2
 		echo "Process done. Would you like me to restart the dnsmasq service? [y/n]" ans
 				if [ "$ans" = "y" ]; 
@@ -263,22 +262,23 @@ hosts()
 				fi
 			else
 		echo "\nReturning to main menu..."
-		fi
- }
+		fi 
+} 
+
 
 #----------------------------- Other functions
 InitialiseServer()
 #List all Install Functions in here...
-{
+ {
 Update
 InstallGit
 InstallOpenSSH
 InstallOpenVMTools
-}
+ }
 
 Networking()
 {
-	echo "\nPlease enter your Networking information...I've pre-populated some fields for you."
+	echo "Please enter your Networking information...Some fields are pre-populated for you"
 	echo "\nCtrl + X when finished to save your changes."
 	sleep 3
 	echo "\naddress " >> /etc/network/interfaces
