@@ -425,7 +425,7 @@ done
 
 # Check for distribution, root and start the menu
 
-WhichDistAmI
+# WhichDistAmI
 AmIroot
 MainMenu
 
