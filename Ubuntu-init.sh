@@ -233,17 +233,34 @@ hosts()
  {	#
 	echo "\nThis will add entries to the hosts file for the home network..."
 	sleep 2
+	echo "\nThe domain will be '.home.lan'
+	sleep 2
 	echo "\nDo you wish to continue? [y/n]" ans
 		if [ "$ans" = "y" ]; 
 			then 
+		echo "# Networking Services"	
 		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
-			
+		echo "10.0.1.5	fw fw.home.lan" >> /etc/hosts
+		echo "10.0.1.6	esxi1 esxi1.home.lan" >> /etc/hosts
+		echo "10.0.1.7	pi-hole pi-hole.home.lan" >> /etc/hosts
+		echo "10.0.1.7	dns dns.home.lan" >> /etc/hosts
+		echo "10.0.1.10	router router.home.lan" >> /etc/hosts
+		echo "10.0.1.10	rt rt.home.lan" >> /etc/hosts
+		echo "# Servers / Devices"
+		echo "10.0.1.20	tv tv.home.lan" >> /etc/hosts
+		echo "10.0.1.20	plex plex.home.lan" >> /etc/hosts
+		echo "10.0.1.20	movies movies.home.lan" >> /etc/hosts
+		echo "10.0.1.21	dll dll.home.lan" >> /etc/hosts
+		echo "10.0.1.21	nzbget nzbget.home.lan" >> /etc/hosts
+		
+		sleep 2
+		echo "Process done. Would you like me to restart the dnsmasq service? [y/n]" ans
+				if [ "$ans" = "y" ]; 
+					then 
+						service dnsmasq restart
+					else 
+						echo "Returning to menu"
+				fi
 			else
 		echo "\nReturning to main menu..."
 		fi
