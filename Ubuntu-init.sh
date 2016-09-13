@@ -131,7 +131,6 @@ InstallGit()
 		fi
 }
 
-
 InstallNetdata()
 {
 #Check to see if Git is installed yet.
@@ -157,9 +156,23 @@ InstallNetdata()
 	sleep 5
 	echo "\nRepo has been cloned... Now to run install script..."
 	sleep 2
-	/home/$USER/netdata/netdata-installer-sh --dont-wait
+	/home/$USER/netdata/netdata-installer.sh --dont-wait
 	echo "\n Netdata is cloned and running. I'll check the port is open now..."
 	sleep 3
+	# stop netdata
+		killall netdata
+
+	# copy netdata.service to systemd
+		cp system/netdata.service /etc/systemd/system/
+
+	# let systemd know there is a new service
+		systemctl daemon-reload
+
+	# enable netdata at boot
+		systemctl enable netdata
+
+	# start netdata
+		service netdata start
 fi
 }
 
@@ -195,7 +208,7 @@ InstallOpenSSH()
 		fi
  }
  
- SetAlias()
+SetAlias()
  {
  	#Grab username 
  	echo "Please enter your account username for alias binding: "
@@ -216,7 +229,25 @@ InstallOpenSSH()
  	echo "Aliases have been added... You must exit your session for these to take effect."
  }
 
-
+hosts()
+ {	#
+	echo "\nThis will add entries to the hosts file for the home network..."
+	sleep 2
+	echo "\nDo you wish to continue? [y/n]" ans
+		if [ "$ans" = "y" ]; 
+			then 
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
+			
+			else
+		echo "\nReturning to main menu..."
+		fi
+ }
 
 #----------------------------- Other functions
 InitialiseServer()
@@ -241,6 +272,7 @@ Networking()
 	sudoedit /etc/network/interfaces
 	echo "\nNow maybe a good time to restart your network interface..."
 }
+
 NetworkingRestart()
 { 
 read -p "Warning - this will restart your networking interface... Are you sure you wish to do this? (y/n)" ans
@@ -262,15 +294,14 @@ IFS=$'\n'
 # Clear Screen
 	clear
 
-# Start menu screen here
+# Start menu here
 	echo  "----------------------------------------"
 	echo  "          Server init script"
 	echo  "----------------------------------------"
 	echo  "  Version $currentver - $currentverdate"
 	echo  "----------------------------------------"
 	echo
-	uname -v
-	
+
 choice=""
 while [ "$choice" != "q" ]
 do
@@ -284,8 +315,8 @@ do
 	echo  "4) Restart network interfaces"
 	echo  "5) Setup common system Aliases"
 	echo  "6) empty"
-	echo  "7) Install Netdata"
-	echo  "8) Install OpenSSH Server"
+	echo  "7) "
+	echo  "8) Deploy hosts file (Home DNS Server)"
 	echo  "9) Specific package install and configuration..."
 	echo  "q) Exit "
 	echo 
@@ -305,12 +336,9 @@ do
 		
 		'6') echo "empty" ;;
 		
-		'7') InstallNetdata
-			FWNetData
-			echo
-			echo "NetData installed. It's on Port 19999" ;;
+		'7') xyz ;;
 			
-		'8') InstallOpenSSH ;;
+		'8') hosts ;;
 			
 		'9') PkgMenu	;;
 		
@@ -376,8 +404,6 @@ do
 done
 }
 
-
-
 #-------------------------------------------- Main Code Begins here!
 
 # Check for distribution, root and start the menu
@@ -387,4 +413,3 @@ AmIroot
 MainMenu
 
 exit 0
-
