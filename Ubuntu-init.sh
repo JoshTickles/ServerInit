@@ -233,9 +233,9 @@ hosts()
  {	#
 	echo "\nThis will add entries to the hosts file for the home network..."
 	sleep 2
-	echo "\nThe domain will be '.home.lan'
+	echo "\nThe domain will be .home.lan"
 	sleep 2
-	echo "\nDo you wish to continue? [y/n]" ans
+	read -p "\nDo you wish to continue? [y/n]" ans
 		if [ "$ans" = "y" ]; 
 			then 
 		echo "# Networking Services"	
