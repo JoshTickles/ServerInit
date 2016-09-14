@@ -238,7 +238,8 @@ hosts()
 	read -p "\nDo you wish to continue? [y/n]" ans
 		if [ "$ans" = "y" ]; 
 			then 
-		echo "# Networking Services"	
+		echo "" >> /etc/hosts	
+		echo "# Networking Services" >> /etc/hosts	
 		echo "10.0.1.5	pfsense pfsense.home.lan" >> /etc/hosts
 		echo "10.0.1.5	fw fw.home.lan" >> /etc/hosts
 		echo "10.0.1.6	esxi1 esxi1.home.lan" >> /etc/hosts
@@ -246,7 +247,8 @@ hosts()
 		echo "10.0.1.7	dns dns.home.lan" >> /etc/hosts
 		echo "10.0.1.10	router router.home.lan" >> /etc/hosts
 		echo "10.0.1.10	rt rt.home.lan" >> /etc/hosts
-		echo "# Servers / Devices"
+		echo "" >> /etc/hosts	
+		echo "# Servers / Devices" >> /etc/hosts
 		echo "10.0.1.20	tv tv.home.lan" >> /etc/hosts
 		echo "10.0.1.20	plex plex.home.lan" >> /etc/hosts
 		echo "10.0.1.20	movies movies.home.lan" >> /etc/hosts
