@@ -228,6 +228,20 @@ SetAlias()
  	sleep 3
  	echo "Aliases have been added... You must exit your session for these to take effect."
  }
+ 
+Installmolly()
+{
+	git=$(dpkg -l | grep "molly-guard" >/dev/null && echo "y" || echo "n")
+	
+		if [ $git = "n" ];
+		then
+			echo "\n Molly-Guard is not installed. Installing now..."
+			apt-get install -y molly-guard
+		else
+			echo ""
+			echo "Molly-Guard is already installed..."
+		fi
+}
 
 hosts()
  {	#
@@ -335,7 +349,7 @@ do
 	echo  "5) Setup common system Aliases"
 	echo  "6) empty"
 	echo  "7) "
-	echo  "8) Deploy hosts file (Home DNS Server)"
+	echo  "8) Nope."
 	echo  "9) Specific package install and configuration..."
 	echo  "q) Exit "
 	echo 
@@ -385,7 +399,7 @@ do
 	echo  "2) Install Open VM Tools"
 	echo  "3) Install UFW Firewall"
 	echo  "4) Configure UFW Firewall"
-	echo  "5) "
+	echo  "5) Install Molly-Guard"
 	echo  "6) "
 	echo  "7) Install Netdata"
 	echo  "8) Install OpenSSH Server"
@@ -404,7 +418,7 @@ do
 		
 		'4') ConfigFW ;;
 		
-		'5') echo "empty" ;;
+		'5') Installmolly ;;
 		
 		'6') echo "empty" ;;
 		
